@@ -23,4 +23,11 @@ export const GlobalStyles = createGlobalStyle`
     font-weight: 400;
     font-size: 1rem;
   }
+
+  h1 {
+    font-size: 3rem;
+    color: ${(props) => props.theme["base-title"]};
+    font-family: "Baloo 2", sans-serif;
+    line-height: 130%;
+  }
 `;
