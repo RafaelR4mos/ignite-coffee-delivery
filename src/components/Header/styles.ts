@@ -15,9 +15,10 @@ export const ButtonContainer = styled.div`
     gap: 12px;
 `;
 
-export const ButtonCart = styled.div<{ color: string; }>`
+export const ButtonCart = styled.div<{ color: string; itemsNumber?: number; }>`
     cursor: pointer;
 
+    position: relative;
     border-radius: 6px;
     display: flex;
     align-items: center;
@@ -28,6 +29,25 @@ export const ButtonCart = styled.div<{ color: string; }>`
     background-color: ${(props) => props.theme[props.color]};
     color: ${(props) =>  props.color === "purple-light" ? props.theme["purple-dark"] : props.theme["yellow-dark"]
     };
+
+`;
+
+export const Counter = styled.div<{ isShow: boolean }>`
+    display: ${(props) => props.isShow ? "flex" : "none"};
+    align-items: center;
+    justify-content: center;
+
+
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    color: ${(props) => props.theme["white"]};
+    font-size: 0.8rem;
+    background-color: ${(props) => props.theme["yellow-dark"]};
+    font-weight: 700;
+    position: absolute;
+    top: -10px;
+    right: -10px;
 `;
 
 export const LocationContainer = styled(ButtonCart)`
