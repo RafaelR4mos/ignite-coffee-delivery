@@ -3,12 +3,12 @@ export const defaultTheme = {
   white: "#FFFFFF",
 
   //product
-  yellow: "#DBAC2C",
+  "yellow": "#DBAC2C",
   "yellow-light": "#F1E9C9",
   "yellow-dark": "#C47F17",
 
-  purple: "#8047F8",
-  "purple-light": "EBE5F9",
+  "purple": "#8047F8",
+  "purple-light": "#EBE5F9",
   "purple-dark": "#4B2995",
 
   //base
@@ -20,5 +20,5 @@ export const defaultTheme = {
   "base-button": "#E6E5E5",
   "base-input": "#EDEDED",
   "base-card": "#F3F2F2",
-  background: "#FAFAFA",
+  "background": "#FAFAFA",
 };
