@@ -24,10 +24,17 @@ export const GlobalStyles = createGlobalStyle`
     font-size: 1rem;
   }
 
-  h1 {
+  h1, h2 {
     font-size: 3rem;
     color: ${(props) => props.theme["base-title"]};
     font-family: "Baloo 2", sans-serif;
+    font-weight: 800;
     line-height: 130%;
   }
+
+  h2 {
+    font-size: 2rem;
+    color: ${(props) => props.theme["base-subtitle"]};
+  }
+
 `;
