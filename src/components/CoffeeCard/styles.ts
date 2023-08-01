@@ -31,3 +31,15 @@ export const CoffeeTag = styled.span`
   font-weight: 700;
   color: ${(props) => props.theme["yellow-dark"]};
 `;
+
+export const CardFooter = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const CoffeePrice = styled.div`
+  display: flex;
+  align-items: flex-end;
+`;
