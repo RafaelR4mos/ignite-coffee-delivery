@@ -14,7 +14,7 @@ export const HeroSectionContainer = styled.div`
     justify-content: center;
     gap: 1rem;
     min-height: 600px;
-    max-width: 85%;
+    max-width: 80%;
     margin: 0 auto;
   }
 `;
@@ -53,7 +53,7 @@ export const Benefits = styled.div`
   align-items: center;
 `;
 
-export const BenefitIcon = styled.div<{ bgColor: string }>`
+export const BenefitIcon = styled.div<{ $bgColor: string }>`
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -64,12 +64,12 @@ export const BenefitIcon = styled.div<{ bgColor: string }>`
   align-items: center;
   justify-content: center;
 
-  background-color: ${(props) => props.theme[props.bgColor]};
+  background-color: ${(props) => props.theme[props.$bgColor]};
 `;
 
 export const CoffeeListContainer = styled.section`
   padding: 32px 0;
-  max-width: 85%;
+  max-width: 80%;
   margin: 0 auto;
 `;
 
@@ -77,5 +77,6 @@ export const CoffeeGalery = styled.div`
   margin-top: 3.375rem;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 40px 32px;
 `;

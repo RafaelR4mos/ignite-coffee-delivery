@@ -3,6 +3,7 @@ export interface IChildren {
 }
 
 export interface ICoffeeData {
+  id: number;
   name: string;
   tags: string[];
   description: string;

@@ -1,6 +1,7 @@
 {
   "coffees": [
     {
+      "id": 1,
       "name": "Expresso Tradicional",
       "tags": ["Tradicional"],
       "description": "O tradicional café feito com água quente e grãos moídos",
@@ -8,6 +9,7 @@
       "coffeeImg": "./coffees/expresso-tradicional.png"
     },
     {
+      "id": 2,
       "name": "Expresso Americano",
       "tags": ["Tradicional"],
       "description": "Expresso diluído, menos intenso que o tradicional",
@@ -15,6 +17,7 @@
       "coffeeImg": "./coffees/expresso-americano.png"
     },
     {
+      "id": 3,
       "name": "Expresso Cremoso",
       "tags": ["Tradicional"],
       "description": "Café expresso tradicional com espuma cremosa",
@@ -22,6 +25,7 @@
       "coffeeImg": "./coffees/expresso-cremoso.png"
     },
     {
+      "id": 4,
       "name": "Expresso Gelado",
       "tags": ["Tradicional", "Gelado"],
       "description": "Bebida preparada com café expresso e cubos de gelo",
@@ -29,6 +33,7 @@
       "coffeeImg": "./coffees/expresso-gelado.png"
     },
     {
+      "id": 5,
       "name": "Café com Leite",
       "tags": ["Tradicional", "Com leite"],
       "description": "Meio a meio de expresso tradicional com leite vaporizado",
@@ -36,11 +41,28 @@
       "coffeeImg": "./coffees/cafe-com-leite.png"
     },
     {
+      "id": 6,
       "name": "Latte",
       "tags": ["Tradicional", "Com leite"],
       "description": "Uma dose de café expresso com o dobro de leite e espuma cremosa",
       "price": 9.9,
       "coffeeImg": "./coffees/latte.png"
+    },
+    {
+      "id": 7,
+      "name": "Latte",
+      "tags": ["Tradicional", "Com leite"],
+      "description": "Uma dose de café expresso com o dobro de leite e espuma cremosa",
+      "price": 9.9,
+      "coffeeImg": "./coffees/latte.png"
+    },
+    {
+      "id": 8,
+      "name": "Expresso Gelado",
+      "tags": ["Tradicional", "Gelado"],
+      "description": "Bebida preparada com café expresso e cubos de gelo",
+      "price": 9.9,
+      "coffeeImg": "./coffees/expresso-gelado.png"
     }
   ]
 }

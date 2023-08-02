@@ -5,16 +5,19 @@ import { BrowserRouter } from "react-router-dom";
 import { Router } from "./Router";
 import { Header } from "./components/Header/Index";
 import { CoffeeProvider } from "./context/Coffee";
+import { CartProvider } from "./context/Cart";
 
 export function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <CoffeeProvider>
-        <BrowserRouter>
-          <Header />
-          <Router />
-        </BrowserRouter>
-      </CoffeeProvider>
+      <CartProvider>
+        <CoffeeProvider>
+          <BrowserRouter>
+            <Header />
+            <Router />
+          </BrowserRouter>
+        </CoffeeProvider>
+      </CartProvider>
       <GlobalStyles />
     </ThemeProvider>
   );

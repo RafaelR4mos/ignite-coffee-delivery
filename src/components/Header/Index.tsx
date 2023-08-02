@@ -7,25 +7,34 @@ import {
   HeaderContainer,
   LocationContainer,
 } from "./styles";
+import { useContext } from "react";
+import { CartContext } from "../../context/Cart";
+import { useNavigate } from "react-router-dom";
 
 export function Header() {
-  const itemsAddedToCart = 4;
+  const { itemsQuantityInCart } = useContext(CartContext);
+  const navigate = useNavigate();
 
   return (
     <HeaderContainer>
       <img
         src={logo}
         alt="logo do coffe delivery com um copo e letras que representam a marca"
+        onClick={() => navigate("/")}
       />
       <ButtonContainer>
         <LocationContainer color="purple-light">
           <MapPin size={16} weight="fill" color="#8047F8" />
           <span>Porto Alegre, RS</span>
         </LocationContainer>
-        <ButtonCart color="yellow-light" itemsNumber={1}>
-          <ShoppingCart size={20} weight="fill" color="#C47F17" />
-          <Counter isShow={itemsAddedToCart ? true : false}>
-            {itemsAddedToCart}
+        <ButtonCart
+          color="yellow-light"
+          title="ir para checkout"
+          onClick={() => navigate("checkout")}
+        >
+          <ShoppingCart size="20" weight="fill" color="#C47F17" />
+          <Counter $isShow={!!itemsQuantityInCart}>
+            {itemsQuantityInCart}
           </Counter>
         </ButtonCart>
       </ButtonContainer>

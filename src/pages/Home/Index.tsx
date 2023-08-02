@@ -35,27 +35,27 @@ export function Home() {
 
             <BenefitsContainer>
               <Benefits>
-                <BenefitIcon bgColor="yellow-dark">
+                <BenefitIcon $bgColor="yellow-dark">
                   <ShoppingCart size={16} weight="fill" />
                 </BenefitIcon>
                 <span>Compra simples e segura</span>
               </Benefits>
               <Benefits>
-                <BenefitIcon bgColor="base-text">
+                <BenefitIcon $bgColor="base-text">
                   <Package size={16} weight="fill" />
                 </BenefitIcon>
                 <span>Embalagem mantém o café intacto</span>
               </Benefits>
 
               <Benefits>
-                <BenefitIcon bgColor="yellow">
+                <BenefitIcon $bgColor="yellow">
                   <Timer size={16} weight="fill" />
                 </BenefitIcon>
                 <span>Entrega rápida e rastreada</span>
               </Benefits>
 
               <Benefits>
-                <BenefitIcon bgColor="purple">
+                <BenefitIcon $bgColor="purple">
                   <Coffee size={16} weight="fill" />
                 </BenefitIcon>
                 <span>O café chega fresquinho até você</span>
@@ -77,7 +77,9 @@ export function Home() {
 
         <CoffeeGalery>
           {coffeeListData ? (
-            coffeeListData.map((coffee) => <CoffeeCard coffeeData={coffee} />)
+            coffeeListData.map((coffee) => (
+              <CoffeeCard coffeeData={coffee} key={coffee.id} />
+            ))
           ) : (
             <h2>Nenhum café encontrado</h2>
           )}

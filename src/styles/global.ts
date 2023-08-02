@@ -12,10 +12,25 @@ export const GlobalStyles = createGlobalStyle`
     box-shadow: 0 0 0 2px ${(props) => props.theme["purple"]};
   }
 
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+
+  button {
+    border: none;
+  }
+
   body {
     background-color: ${(props) => props.theme["background"]};
     color: ${(props) => props.theme["base-text"]};
-    -webkit-font-smoothing: antialised
+    -webkit-font-smoothing: antialiased;
   }
 
   body, input, textarea, button {
