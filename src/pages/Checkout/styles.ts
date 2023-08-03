@@ -85,3 +85,50 @@ export const Input = styled.input<{ $flex: number }>`
     box-shadow: 0 0 0 1px ${(props) => props.theme["yellow-dark"]};
   }
 `;
+
+export const PaymentContainer = styled(AddressForm)``;
+
+export const PaymentCardsContainer = styled.div`
+  margin-top: 2rem;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+`;
+
+export const PaymentCards = styled.div<{ $isSelected?: boolean }>`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+  cursor: pointer;
+
+  border-radius: 6px;
+  padding: 1rem;
+
+  background-color: ${(props) => props.theme["base-button"]};
+  color: ${(props) => props.theme["purple"]};
+
+  & span {
+    color: ${(props) => props.theme["base-text"]};
+    text-transform: uppercase;
+    line-height: 160%;
+    font-size: 0.75rem;
+  }
+
+  box-shadow: ${(props) =>
+    props.$isSelected ? `0 0 0 2px ${props.theme["purple"]}` : "none"};
+
+  background-color: ${(props) =>
+    props.$isSelected
+      ? `${props.theme["purple-light"]}`
+      : `${props.theme["base-button"]}`};
+
+  &:hover {
+    background-color: ${(props) =>
+      props.$isSelected
+        ? `${props.theme["purple-light"]}`
+        : `${props.theme["base-hover"]}`};
+  }
+`;
