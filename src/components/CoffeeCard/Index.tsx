@@ -13,6 +13,8 @@ import {
 } from "./styles";
 import { useContext, useState } from "react";
 import { CartContext } from "../../context/Cart";
+import { toast } from "react-toastify";
+import { toastConfig } from "../../utils/toastConfig";
 
 interface CoffeCardProps {
   coffeeData: ICoffeeData;
@@ -76,9 +78,10 @@ export function CoffeeCard({ coffeeData }: CoffeCardProps) {
               size={22}
               alt="Adicionar ao carrinho"
               cursor="pointer"
-              onClick={() =>
-                addItemToCart({ ...coffeeData, quantity: coffeeQuantity })
-              }
+              onClick={() => {
+                toast("Café adicionado com sucesso!", toastConfig);
+                addItemToCart({ ...coffeeData, quantity: coffeeQuantity });
+              }}
             />
           </AddCartBtn>
         </CoffeeActionsContainer>

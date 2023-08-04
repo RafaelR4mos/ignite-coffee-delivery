@@ -6,6 +6,9 @@ import { Router } from "./Router";
 import { Header } from "./components/Header/Index";
 import { CoffeeProvider } from "./context/Coffee";
 import { CartProvider } from "./context/Cart";
+import { ToastContainer } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 export function App() {
   return (
@@ -19,6 +22,7 @@ export function App() {
         </CoffeeProvider>
       </CartProvider>
       <GlobalStyles />
+      <ToastContainer />
     </ThemeProvider>
   );
 }
