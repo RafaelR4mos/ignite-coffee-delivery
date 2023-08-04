@@ -141,4 +141,12 @@ export const SelectedCoffeesContainer = styled.div`
   border-radius: 6px 44px;
   padding: 2.5rem;
   background-color: ${(props) => props.theme["base-card"]};
+  max-height: 500px;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+    background-color: red;
+  }
 `;

@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { ActionsContainer, CoffeeCartContainer, DeleteBtn } from "./styles";
-import { ICartList } from "../../context/Cart";
+import { CartContext, ICartList } from "../../context/Cart";
 import { Counter } from "../CoffeeCard/styles";
 import { Minus, Plus, Trash } from "@phosphor-icons/react";
 
@@ -9,6 +9,7 @@ interface CoffeeCardCheckoutProps {
 }
 
 export function CoffeeCardCheckout({ coffeeData }: CoffeeCardCheckoutProps) {
+  const { removeItemToCart } = useContext(CartContext);
   const [coffeeQuantity, setCoffeeQuantity] = useState(coffeeData.quantity);
   const price = (coffeeData.price * coffeeQuantity).toFixed(2).padEnd(2, "0");
 
@@ -48,7 +49,7 @@ export function CoffeeCardCheckout({ coffeeData }: CoffeeCardCheckoutProps) {
             />
           </Counter>
 
-          <DeleteBtn>
+          <DeleteBtn onClick={() => removeItemToCart(coffeeData.id)}>
             <Trash size={16} />
             <span>Remover</span>
           </DeleteBtn>

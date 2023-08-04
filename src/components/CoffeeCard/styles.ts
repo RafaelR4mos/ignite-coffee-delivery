@@ -109,4 +109,9 @@ export const AddCartBtn = styled.button`
 
   border-radius: 6px;
   padding: 0.5rem;
+
+  &:focus {
+    box-shadow: none;
+    outline: 0;
+  }
 `;
