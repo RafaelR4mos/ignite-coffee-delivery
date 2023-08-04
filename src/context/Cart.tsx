@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 import { IChildren, ICoffeeData } from "../utils/commonInterfaces";
 
-interface ICartList extends ICoffeeData {
+export interface ICartList extends ICoffeeData {
   quantity: number;
 }
 

@@ -132,3 +132,13 @@ export const PaymentCards = styled.div<{ $isSelected?: boolean }>`
         : `${props.theme["base-hover"]}`};
   }
 `;
+
+//selected coffees
+export const SelectedCoffeesContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  border-radius: 6px 44px;
+  padding: 2.5rem;
+  background-color: ${(props) => props.theme["base-card"]};
+`;

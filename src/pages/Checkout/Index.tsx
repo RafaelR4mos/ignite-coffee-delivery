@@ -14,14 +14,18 @@ import {
   PaymentCards,
   PaymentCardsContainer,
   PaymentContainer,
+  SelectedCoffeesContainer,
   Subtitle,
 } from "./styles";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CartContext } from "../../context/Cart";
+import { CoffeeCardCheckout } from "../../components/CoffeeCardCheckout/Index";
 
 type PaymentMethod = "credit" | "debit" | "cash";
 
 export function Checkout() {
+  const { cartList } = useContext(CartContext);
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | null>(
     null
   );
@@ -107,6 +111,14 @@ export function Checkout() {
 
       <div>
         <Subtitle>Cafés selecionados</Subtitle>
+
+        <SelectedCoffeesContainer>
+          {cartList.length > 0 ? (
+            cartList.map((coffee) => <CoffeeCardCheckout coffeeData={coffee} />)
+          ) : (
+            <span>Nenhum café adicionado</span>
+          )}
+        </SelectedCoffeesContainer>
       </div>
     </PageContainer>
   );
