@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ActionsContainer, CoffeeCartContainer, DeleteBtn } from "./styles";
 import { CartContext, ICartList } from "../../context/Cart";
 import { Counter } from "../CoffeeCard/styles";
@@ -10,10 +10,12 @@ interface CoffeeCardCheckoutProps {
 
 export function CoffeeCardCheckout({ coffeeData }: CoffeeCardCheckoutProps) {
   const { removeItemToCart } = useContext(CartContext);
+  const { changeCoffeeQuantity } = useContext(CartContext);
+
   const [coffeeQuantity, setCoffeeQuantity] = useState(coffeeData.quantity);
   const price = (coffeeData.price * coffeeQuantity).toFixed(2).padEnd(2, "0");
 
-  function changeCoffeeQuantity(target: "minus" | "plus") {
+  function handleCoffeeQuantity(target: "minus" | "plus") {
     if (target === "minus" && coffeeQuantity > 1) {
       setCoffeeQuantity((state) => (state -= 1));
     } else if (target === "plus") {
@@ -22,6 +24,11 @@ export function CoffeeCardCheckout({ coffeeData }: CoffeeCardCheckoutProps) {
       setCoffeeQuantity((state) => state);
     }
   }
+
+  useEffect(() => {
+    changeCoffeeQuantity(coffeeData.id, coffeeQuantity);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [coffeeQuantity, coffeeData.id]);
 
   return (
     <CoffeeCartContainer>
@@ -36,7 +43,7 @@ export function CoffeeCardCheckout({ coffeeData }: CoffeeCardCheckoutProps) {
               weight="bold"
               alt="Remover café"
               cursor="pointer"
-              onClick={() => changeCoffeeQuantity("minus")}
+              onClick={() => handleCoffeeQuantity("minus")}
             />
             <span>{coffeeQuantity}</span>
             <Plus
@@ -45,7 +52,7 @@ export function CoffeeCardCheckout({ coffeeData }: CoffeeCardCheckoutProps) {
               weight="bold"
               alt="Adicionar café"
               cursor="pointer"
-              onClick={() => changeCoffeeQuantity("plus")}
+              onClick={() => handleCoffeeQuantity("plus")}
             />
           </Counter>
 
