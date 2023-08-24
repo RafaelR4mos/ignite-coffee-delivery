@@ -22,6 +22,7 @@ import {
 } from "./styles";
 
 import { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
 import { CartContext } from "../../context/Cart";
 import { CoffeeCardCheckout } from "../../components/CoffeeCardCheckout/Index";
 
@@ -33,6 +34,7 @@ export function Checkout() {
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | null>(
     null
   );
+  const { register, handleSubmit } = useForm();
 
   function selectPaymentMethod(method: PaymentMethod) {
     setPaymentMethod(method);
@@ -43,7 +45,7 @@ export function Checkout() {
       <div>
         <Subtitle>Complete seu pedido</Subtitle>
 
-        <AddressForm>
+        <AddressForm onSubmit={handleSubmit((data) => console.log(data))}>
           <CardTitleContainer>
             <MapPinLine size={22} color="#C47F17" />
             <div>
@@ -54,22 +56,51 @@ export function Checkout() {
 
           <InputContainer>
             <div>
-              <Input $flex={0.4} placeholder="CPF" />
+              <Input
+                $flex={0.4}
+                placeholder="CPF"
+                id="cpf"
+                {...register("cpf")}
+              />
             </div>
 
             <div>
-              <Input $flex={1} placeholder="Rua" />
+              <Input
+                $flex={1}
+                placeholder="Rua"
+                id="street"
+                {...register("street")}
+              />
             </div>
 
             <div>
-              <Input $flex={0.4} placeholder="Número" type="number" />
-              <Input $flex={1} placeholder="Complemento" />
+              <Input
+                $flex={0.4}
+                placeholder="Número"
+                type="number"
+                {...register("number")}
+              />
+              <Input
+                $flex={1}
+                placeholder="Complemento"
+                {...register("complement")}
+              />
             </div>
 
             <div>
-              <Input $flex={0.4} placeholder="Bairro" />
-              <Input $flex={1} placeholder="Cidade" />
-              <Input $flex={0.2} placeholder="UF" />
+              <Input
+                $flex={0.4}
+                placeholder="Bairro"
+                id="neighborhood"
+                {...register("neighborhood")}
+              />
+              <Input
+                $flex={1}
+                placeholder="Cidade"
+                id="city"
+                {...register("city")}
+              />
+              <Input $flex={0.2} placeholder="UF" id="uf" {...register("uf")} />
             </div>
           </InputContainer>
         </AddressForm>
