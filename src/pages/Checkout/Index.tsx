@@ -8,12 +8,15 @@ import {
 import {
   AddressForm,
   CardTitleContainer,
+  ConfirmOrderBtn,
   Input,
   InputContainer,
   PageContainer,
   PaymentCards,
   PaymentCardsContainer,
   PaymentContainer,
+  PriceRow,
+  PricesContainer,
   SelectedCoffeesContainer,
   Subtitle,
 } from "./styles";
@@ -25,7 +28,8 @@ import { CoffeeCardCheckout } from "../../components/CoffeeCardCheckout/Index";
 type PaymentMethod = "credit" | "debit" | "cash";
 
 export function Checkout() {
-  const { cartList } = useContext(CartContext);
+  const { cartList, totalItensPrice, deliveryPrice, totalFinalPrice } =
+    useContext(CartContext);
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | null>(
     null
   );
@@ -114,7 +118,27 @@ export function Checkout() {
 
         <SelectedCoffeesContainer>
           {cartList.length > 0 ? (
-            cartList.map((coffee) => <CoffeeCardCheckout coffeeData={coffee} />)
+            <>
+              {cartList.map((coffee) => (
+                <CoffeeCardCheckout coffeeData={coffee} />
+              ))}
+              <PricesContainer>
+                <PriceRow>
+                  <span>Total de itens</span>
+                  <span>{`R$ ${totalItensPrice}`}</span>
+                </PriceRow>
+                <PriceRow>
+                  <span>Entrega</span>
+                  <span>{`R$ ${deliveryPrice}`}</span>
+                </PriceRow>
+                <PriceRow>
+                  <strong>Total</strong>
+                  <span>{`R$ ${totalFinalPrice}`}</span>
+                </PriceRow>
+
+                <ConfirmOrderBtn>Confirmar Pedido</ConfirmOrderBtn>
+              </PricesContainer>
+            </>
           ) : (
             <span>Nenhum café adicionado</span>
           )}

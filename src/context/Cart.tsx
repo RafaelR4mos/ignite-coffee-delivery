@@ -8,6 +8,9 @@ export interface ICartList extends ICoffeeData {
 interface ICartContext {
   cartList: ICartList[] | [];
   itemsQuantityInCart: number;
+  deliveryPrice: string;
+  totalItensPrice: string;
+  totalFinalPrice: string;
   addItemToCart: (coffeeToAdd: ICartList) => void;
   removeItemToCart: (coffeId: number) => void;
   changeCoffeeQuantity: (coffeeId: number, quantity: number) => void;
@@ -18,6 +21,15 @@ export const CartContext = createContext({} as ICartContext);
 export function CartProvider({ children }: IChildren) {
   const [cartList, setCartList] = useState<ICartList[] | []>([]);
   const itemsQuantityInCart = cartList.length ? cartList.length : 0;
+
+  const deliveryPrice = (3.5).toFixed(2);
+  const totalItensPrice = cartList
+    .map((item) => item.price * item.quantity)
+    .reduce((acc, item) => acc + item, 0)
+    .toFixed(2);
+  const totalFinalPrice = (
+    Number(totalItensPrice) + Number(deliveryPrice)
+  ).toFixed(2);
 
   function addItemToCart(coffeeToAdd: ICartList) {
     const coffeeAlreadyInCart = cartList.some(
@@ -57,6 +69,9 @@ export function CartProvider({ children }: IChildren) {
       value={{
         cartList,
         itemsQuantityInCart,
+        totalItensPrice,
+        totalFinalPrice,
+        deliveryPrice,
         addItemToCart,
         removeItemToCart,
         changeCoffeeQuantity,

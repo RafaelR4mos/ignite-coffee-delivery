@@ -150,3 +150,36 @@ export const SelectedCoffeesContainer = styled.div`
     background-color: red;
   }
 `;
+
+export const PricesContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+`;
+
+export const PriceRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: ${(props) => props.theme["base-text"]};
+
+  & > strong {
+    font-size: 1.25rem;
+    color: ${(props) => props.theme["base-subtitle"]};
+  }
+`;
+
+export const ConfirmOrderBtn = styled.button`
+  flex: 1;
+  padding: 0.75rem 0.5rem;
+  color: ${(props) => props.theme.white};
+  background-color: ${(props) => props.theme.yellow};
+  border-radius: 6px;
+  margin-top: calc(1.5rem - 0.875rem);
+  transition: all 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${(props) => props.theme["yellow-dark"]};
+  }
+`;

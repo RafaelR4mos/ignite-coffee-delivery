@@ -62,7 +62,7 @@ export function CoffeeCardCheckout({ coffeeData }: CoffeeCardCheckoutProps) {
           </DeleteBtn>
         </ActionsContainer>
       </div>
-      <span>{`R$ ${price}`}</span>
+      <strong>{`R$ ${price}`}</strong>
     </CoffeeCartContainer>
   );
 }
