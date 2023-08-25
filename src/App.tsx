@@ -13,15 +13,15 @@ import "react-toastify/dist/ReactToastify.css";
 export function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <CartProvider>
-        <CoffeeProvider>
-          <BrowserRouter>
+      <BrowserRouter>
+        <CartProvider>
+          <CoffeeProvider>
             <Header />
             <Router />
-          </BrowserRouter>
-        </CoffeeProvider>
-      </CartProvider>
-      <GlobalStyles />
+          </CoffeeProvider>
+        </CartProvider>
+        <GlobalStyles />
+      </BrowserRouter>
       <ToastContainer />
     </ThemeProvider>
   );

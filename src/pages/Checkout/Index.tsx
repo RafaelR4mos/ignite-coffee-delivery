@@ -38,15 +38,20 @@ interface IAddressFormValues {
   uf: string;
 }
 
-interface ICoffeeOrder extends IAddressFormValues {
+export interface ICoffeeOrder extends IAddressFormValues {
   payment: PaymentMethod | null;
 }
 
-type PaymentMethod = "credit" | "debit" | "cash";
+type PaymentMethod = "crédito" | "débito" | "dinheiro";
 
 export function Checkout() {
-  const { cartList, totalItensPrice, deliveryPrice, totalFinalPrice } =
-    useContext(CartContext);
+  const {
+    cartList,
+    totalItensPrice,
+    deliveryPrice,
+    totalFinalPrice,
+    finishCoffeeOrder,
+  } = useContext(CartContext);
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | null>(
     null
   );
@@ -62,7 +67,7 @@ export function Checkout() {
       payment: paymentMethod,
     };
 
-    console.log(orderData);
+    finishCoffeeOrder(orderData);
   }
 
   return (
@@ -96,7 +101,7 @@ export function Checkout() {
                 $flex={1}
                 placeholder="Rua"
                 id="street"
-                {...register("street")}
+                {...register("street", { required: true })}
               />
             </div>
 
@@ -105,7 +110,7 @@ export function Checkout() {
                 $flex={0.4}
                 placeholder="Número"
                 type="number"
-                {...register("number")}
+                {...register("number", { required: true })}
               />
               <Input
                 $flex={1}
@@ -119,15 +124,20 @@ export function Checkout() {
                 $flex={0.4}
                 placeholder="Bairro"
                 id="neighborhood"
-                {...register("neighborhood")}
+                {...register("neighborhood", { required: true })}
               />
               <Input
                 $flex={1}
                 placeholder="Cidade"
                 id="city"
-                {...register("city")}
+                {...register("city", { required: true })}
               />
-              <Input $flex={0.2} placeholder="UF" id="uf" {...register("uf")} />
+              <Input
+                $flex={0.2}
+                placeholder="UF"
+                id="uf"
+                {...register("uf", { required: true })}
+              />
             </div>
           </InputContainer>
         </AddressForm>
@@ -145,24 +155,24 @@ export function Checkout() {
 
           <PaymentCardsContainer>
             <PaymentCards
-              $isSelected={paymentMethod === "credit"}
-              onClick={() => selectPaymentMethod("credit")}
+              $isSelected={paymentMethod === "crédito"}
+              onClick={() => selectPaymentMethod("crédito")}
             >
               <CreditCard size={12} />
               <span>cartão de crédito</span>
             </PaymentCards>
 
             <PaymentCards
-              $isSelected={paymentMethod === "debit"}
-              onClick={() => selectPaymentMethod("debit")}
+              $isSelected={paymentMethod === "débito"}
+              onClick={() => selectPaymentMethod("débito")}
             >
               <Bank size={12} />
               <span>cartão de débito</span>
             </PaymentCards>
 
             <PaymentCards
-              $isSelected={paymentMethod === "cash"}
-              onClick={() => selectPaymentMethod("cash")}
+              $isSelected={paymentMethod === "dinheiro"}
+              onClick={() => selectPaymentMethod("dinheiro")}
             >
               <Money size={12} />
               <span>dinheiro</span>

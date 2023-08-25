@@ -1,5 +1,7 @@
 import { createContext, useState } from "react";
 import { IChildren, ICoffeeData } from "../utils/commonInterfaces";
+import { useNavigate } from "react-router-dom";
+import { ICoffeeOrder } from "../pages/Checkout/Index";
 
 export interface ICartList extends ICoffeeData {
   quantity: number;
@@ -11,16 +13,20 @@ interface ICartContext {
   deliveryPrice: string;
   totalItensPrice: string;
   totalFinalPrice: string;
+  coffeeOrder: ICoffeeOrder | null;
   addItemToCart: (coffeeToAdd: ICartList) => void;
   removeItemToCart: (coffeId: number) => void;
   changeCoffeeQuantity: (coffeeId: number, quantity: number) => void;
+  finishCoffeeOrder: (coffeeOrderData: ICoffeeOrder) => void;
 }
 
 export const CartContext = createContext({} as ICartContext);
 
 export function CartProvider({ children }: IChildren) {
   const [cartList, setCartList] = useState<ICartList[] | []>([]);
+  const [coffeeOrder, setCoffeeOrder] = useState<ICoffeeOrder | null>(null);
   const itemsQuantityInCart = cartList.length ? cartList.length : 0;
+  const navigate = useNavigate();
 
   const deliveryPrice = (3.5).toFixed(2);
   const totalItensPrice = cartList
@@ -62,6 +68,11 @@ export function CartProvider({ children }: IChildren) {
     );
   }
 
+  function finishCoffeeOrder(coffeeOrderData: ICoffeeOrder) {
+    setCoffeeOrder(coffeeOrderData);
+    navigate("/success");
+  }
+
   console.log(cartList);
 
   return (
@@ -72,9 +83,11 @@ export function CartProvider({ children }: IChildren) {
         totalItensPrice,
         totalFinalPrice,
         deliveryPrice,
+        coffeeOrder,
         addItemToCart,
         removeItemToCart,
         changeCoffeeQuantity,
+        finishCoffeeOrder,
       }}
     >
       {children}
