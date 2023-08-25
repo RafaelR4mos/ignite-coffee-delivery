@@ -21,10 +21,26 @@ import {
   Subtitle,
 } from "./styles";
 
+// import { checkoutSchema } from "./formSchema";
+// import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { CartContext } from "../../context/Cart";
 import { CoffeeCardCheckout } from "../../components/CoffeeCardCheckout/Index";
+
+interface IAddressFormValues {
+  cpf: number;
+  street: string;
+  number: number;
+  complement: string | undefined;
+  neighborhood: string;
+  city: string;
+  uf: string;
+}
+
+interface ICoffeeOrder extends IAddressFormValues {
+  payment: PaymentMethod | null;
+}
 
 type PaymentMethod = "credit" | "debit" | "cash";
 
@@ -34,10 +50,19 @@ export function Checkout() {
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | null>(
     null
   );
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm<IAddressFormValues>();
 
   function selectPaymentMethod(method: PaymentMethod) {
     setPaymentMethod(method);
+  }
+
+  function onSubmit(data: IAddressFormValues) {
+    const orderData: ICoffeeOrder = {
+      ...data,
+      payment: paymentMethod,
+    };
+
+    console.log(orderData);
   }
 
   return (
@@ -45,7 +70,7 @@ export function Checkout() {
       <div>
         <Subtitle>Complete seu pedido</Subtitle>
 
-        <AddressForm onSubmit={handleSubmit((data) => console.log(data))}>
+        <AddressForm>
           <CardTitleContainer>
             <MapPinLine size={22} color="#C47F17" />
             <div>
@@ -58,10 +83,12 @@ export function Checkout() {
             <div>
               <Input
                 $flex={0.4}
+                type="number"
                 placeholder="CPF"
                 id="cpf"
                 {...register("cpf")}
               />
+              <p></p>
             </div>
 
             <div>
@@ -151,7 +178,7 @@ export function Checkout() {
           {cartList.length > 0 ? (
             <>
               {cartList.map((coffee) => (
-                <CoffeeCardCheckout coffeeData={coffee} />
+                <CoffeeCardCheckout key={coffee.id} coffeeData={coffee} />
               ))}
               <PricesContainer>
                 <PriceRow>
@@ -167,7 +194,11 @@ export function Checkout() {
                   <span>{`R$ ${totalFinalPrice}`}</span>
                 </PriceRow>
 
-                <ConfirmOrderBtn>Confirmar Pedido</ConfirmOrderBtn>
+                <ConfirmOrderBtn
+                  onClick={handleSubmit((data) => onSubmit(data))}
+                >
+                  Confirmar Pedido
+                </ConfirmOrderBtn>
               </PricesContainer>
             </>
           ) : (
