@@ -11,22 +11,22 @@ Projeto desenvolvido através de um desafio do 2º módulo "Criando SPA's com Re
 </p>
 
 <p align="center">
-  <img alt="imagem do site pronto" src="">
+  <img alt="imagem do site pronto" src="./src/assets/img-site-done.png">
 </p>
 
 <p align="center">
-  <a href="" target="_blank">➡️ Acesse o deploy!</a>
+  <a href="https://ignite-coffee-delivery-nine.vercel.app/" target="_blank">➡️ Acesse o deploy!</a>
 </p>
 
 ## 🚀 Tecnologias
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
--   React
--   ContextAPI
--   StyledComponents
--   Typescript
--   Vite
+- React
+- ContextAPI
+- StyledComponents
+- Typescript
+- Vite
 
 ## 💻 Projeto
 
