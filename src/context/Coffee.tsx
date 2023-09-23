@@ -15,7 +15,7 @@ export function CoffeeProvider({ children }: IChildren) {
 
   async function getAllCoffees() {
     try {
-      const response = await fetch("../data.json");
+      const response = await fetch("./data.json");
 
       if (response.ok) {
         const data = await response.json();
